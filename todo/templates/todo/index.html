@@ -1,0 +1,36 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <form action="" method="POST" class="input-group input-group-lg">
+            {% csrf_token %}
+            <input id="title" name="title" type="text" class="form-control" aria-label="Sizing example input"
+                   aria-describedby="inputGroup-sizing-lg" autofocus>
+
+            <button class="input-group-text" id="inputGroup-sizing-lg">Add Todo</button>
+        </form>
+        <div class="container">
+            <h1 class="mt-5 mb-3 text-center">Todo List</h1>
+            <ul class="list-group ">
+                {% for todo in todos reversed%}
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">{{ todo.title }}</div>
+
+                        </div>
+
+
+                        <a href="delete/{{ todo.id }}" name="delete" class="badge bg-danger rounded-pill">Delete</a>
+
+
+                    </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+        {# Add for loop to add list items #}
+
+
+    </div>
+{% endblock content %}
+
